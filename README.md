@@ -17,5 +17,5 @@ Audio Processor and 8ch Amplifier with CamillaDSP on RADXA CM3J board
 Проект выкладывается как есть. Любой желающий может его скачать, заказать платы, спаять и запустить в работу.
 
 С документацией плохо, нужно время.
-
+Группа для обсуждения: https://t.me/DigitalAudioWare
 Виктор Хомченко https://t.me/mikhalych24 Красноярск 2025г.
