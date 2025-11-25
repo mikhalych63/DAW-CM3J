@@ -1,0 +1,121 @@
+---
+hide_capture_samplerate: false
+hide_silence: false
+hide_capture_device: false
+hide_playback_device: false
+hide_rate_monitoring: false
+apply_config_automatically: false
+status_update_interval: 100
+custom_shortcuts:
+  - section: "Входные уровни"
+    description: "Входные регуляторы уровня"
+    shortcuts:
+      - name: "Левый"
+        path_in_config: ["filters", "GainInL", "parameters", "gain"]
+        range_from: -60
+        range_to: 0
+        step: 1
+      - name: "Правый"
+        path_in_config: ["filters", "GainInR", "parameters", "gain"]
+        range_from: -60
+        range_to: 0
+        step: 1
+  - section: "Выходные уровни"
+    description: "Выходные регуляторы уровня поканально"
+    shortcuts:
+      - name: "High L"
+        path_in_config: ["filters", "Gain0", "parameters", "gain"]
+        range_from: -60
+        range_to: 0
+        step: 1
+      - name: "High R"
+        path_in_config: ["filters", "Gain1", "parameters", "gain"]
+        range_from: -60
+        range_to: 0
+        step: 1
+      - name: "Mid L"
+        path_in_config: ["filters", "Gain2", "parameters", "gain"]
+        range_from: -60
+        range_to: 0
+        step: 1
+      - name: "Mid R"
+        path_in_config: ["filters", "Gain3", "parameters", "gain"]
+        range_from: -60
+        range_to: 0
+        step: 1
+      - name: "Low L"
+        path_in_config: ["filters", "Gain4", "parameters", "gain"]
+        range_from: -60
+        range_to: 0
+        step: 1
+      - name: "Low R"
+        path_in_config: ["filters", "Gain5", "parameters", "gain"]
+        range_from: -60
+        range_to: 0
+        step: 1
+      - name: "Sub L"
+        path_in_config: ["filters", "Gain6", "parameters", "gain"]
+        range_from: -60
+        range_to: 0
+        step: 1
+      - name: "Sub R"
+        path_in_config: ["filters", "Gain7", "parameters", "gain"]
+        range_from: -60
+        range_to: 0
+        step: 1
+  - section: "Delays"
+    description: "Задержки поканально, мс"
+    shortcuts:
+      - name: "High L"
+        path_in_config: ["filters", "Delay0", "parameters", "delay"]
+        range_from: 0
+        range_to: 3
+        step: 0.01
+      - name: "High R"
+        path_in_config: ["filters", "Delay1", "parameters", "delay"]
+        range_from: 0
+        range_to: 3
+        step: 0.01
+      - name: "Mid L"
+        path_in_config: ["filters", "Delay2", "parameters", "delay"]
+        range_from: 0
+        range_to: 3
+        step: 0.01
+      - name: "Mid R"
+        path_in_config: ["filters", "Delay3", "parameters", "delay"]
+        range_from: 0
+        range_to: 3
+        step: 0.01
+      - name: "Low L"
+        path_in_config: ["filters", "Delay4", "parameters", "delay"]
+        range_from: 0
+        range_to: 3
+        step: 0.01
+      - name: "Low R"
+        path_in_config: ["filters", "Delay5", "parameters", "delay"]
+        range_from: 0
+        range_to: 3
+        step: 0.01
+      - name: "Sub L"
+        path_in_config: ["filters", "Delay6", "parameters", "delay"]
+        range_from: 0
+        range_to: 3
+        step: 0.01
+      - name: "Sub R"
+        path_in_config: ["filters", "Delay7", "parameters", "delay"]
+        range_from: 0
+        range_to: 3
+        step: 0.01
+  - section: "Equalizer"
+    description: "To use the EQ, add filters named \"Bass\" and \"Treble\" to the pipeline.<br/>Recommented settings: <br/>Bass: Biquad Lowshelf freq=85 q=0.9<br/>Treble: Biquad Highshelf freq=6500 q=0.7"
+    shortcuts:
+      - name: "Treble (dB)"
+        path_in_config: ["filters", "Treble", "parameters", "gain"]
+        range_from: -12
+        range_to: 12
+        step: 0.5
+      - name: "Bass (dB)"
+        path_in_config: ["filters", "Bass", "parameters", "gain"]
+        range_from: -12
+        range_to: 12
+        step: 0.5

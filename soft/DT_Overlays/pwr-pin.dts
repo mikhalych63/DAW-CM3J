@@ -1,0 +1,26 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "rockchip,rk3308";
+
+    fragment@0 {
+        target-path = "/leds/";
+        __overlay__ {
+            bluecustom_hb {
+	        default-state = "on";
+                label = "rk3308:pwr_pin";
+                gpios = <&gpio0 17 0x00>; /* GPIO0_C1 on Rock S0 */
+                linux,default-trigger = "default-on";
+            };
+        };
+    };
+};
+
+/* 
+green-led {
+	    default-state = "on";
+	    gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
+	    label = "rockpis:green:power";
+	    linux,default-trigger = "default-on";
+	};*/

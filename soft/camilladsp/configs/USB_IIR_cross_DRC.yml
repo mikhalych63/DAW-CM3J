@@ -1,0 +1,230 @@
+description: "\u0412\u0445\u043E\u0434 USB\n\u041F\u043E\u043A\u0430\u043D\u0430\u043B\
+  \u044C\u043D\u044B\u0439 \u0432\u044B\u0445\u043E\u0434 \u043D\u0430 4 \u043F\u043E\
+  \u043B\u043E\u0441\u044B\nIIR \u043A\u0440\u043E\u0441\u0441\u043E\u0432\u0435\u0440\
+  \ + \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0430\
+  \u044F \u044D\u043A\u0432\u0430\u043B\u0438\u0437\u0430\u0446\u0438\u044F (DRC)"
+devices:
+  adjust_period: null
+  capture:
+    channels: 2
+    device: plughw:CARD=UAC2Gadget,DEV=0
+    format: S24LE
+    type: Alsa
+  capture_samplerate: 96000
+  chunksize: 4096
+  enable_rate_adjust: null
+  playback:
+    channels: 8
+    device: hw:i2s8ch0,0,0
+    format: S32LE
+    type: Alsa
+  queuelimit: null
+  rate_measure_interval: null
+  resampler:
+    profile: Balanced
+    type: AsyncSinc
+  samplerate: 96000
+  silence_threshold: null
+  silence_timeout: null
+  stop_on_rate_change: null
+  target_level: null
+  volume_ramp_time: null
+filters:
+  DRC_Left:
+    description: null
+    parameters:
+      channel: 0
+      filename: ../coeffs/LeftSpeaker48000NORMAL.wav
+      type: Wav
+    type: Conv
+  DRC_Right:
+    description: null
+    parameters:
+      channel: 0
+      filename: ../coeffs/RightSpeaker48000NORMAL.wav
+      type: Wav
+    type: Conv
+  High:
+    description: null
+    parameters:
+      freq: 4000
+      order: 2
+      type: ButterworthHighpass
+    type: BiquadCombo
+  Mid-High:
+    description: null
+    parameters:
+      freq: 4000
+      order: 2
+      type: ButterworthLowpass
+    type: BiquadCombo
+  Mid-Low:
+    description: null
+    parameters:
+      freq: 350
+      order: 2
+      type: ButterworthHighpass
+    type: BiquadCombo
+  Sub:
+    description: null
+    parameters:
+      freq: 80
+      order: 4
+      type: ButterworthLowpass
+    type: BiquadCombo
+  Sub-Woof:
+    description: null
+    parameters:
+      freq: 80
+      order: 2
+      type: ButterworthHighpass
+    type: BiquadCombo
+  Woof-Mid:
+    description: null
+    parameters:
+      freq: 350
+      order: 2
+      type: ButterworthLowpass
+    type: BiquadCombo
+mixers:
+  Crossover:
+    channels:
+      in: 2
+      out: 8
+    description: null
+    mapping:
+    - dest: 0
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 1
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 2
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 3
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 4
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 5
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 6
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 7
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+pipeline:
+- bypassed: null
+  channel: 0
+  description: null
+  names:
+  - DRC_Left
+  type: Filter
+- bypassed: null
+  channel: 1
+  description: null
+  names:
+  - DRC_Right
+  type: Filter
+- bypassed: null
+  description: null
+  name: Crossover
+  type: Mixer
+- bypassed: null
+  channel: 0
+  description: null
+  names:
+  - High
+  type: Filter
+- bypassed: null
+  channel: 1
+  description: null
+  names:
+  - High
+  type: Filter
+- bypassed: null
+  channel: 2
+  description: null
+  names:
+  - Mid-High
+  - Mid-Low
+  type: Filter
+- bypassed: null
+  channel: 3
+  description: null
+  names:
+  - Mid-High
+  - Mid-Low
+  type: Filter
+- bypassed: null
+  channel: 4
+  description: null
+  names:
+  - Woof-Mid
+  - Sub-Woof
+  type: Filter
+- bypassed: null
+  channel: 5
+  description: null
+  names:
+  - Woof-Mid
+  - Sub-Woof
+  type: Filter
+- bypassed: null
+  channel: 6
+  description: null
+  names:
+  - Sub
+  type: Filter
+- bypassed: null
+  channel: 7
+  description: null
+  names:
+  - Sub
+  type: Filter
+processors: {}
+title: null

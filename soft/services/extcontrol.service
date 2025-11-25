@@ -1,0 +1,10 @@
+[Unit]
+Description=External Power Control
+Wants=network-online.target
+After=network.target network-online.target
+[Service]
+Type=simple
+ExecStart=/opt/bin/extcontrol.sh > /dev/null
+StandardOutput=journal
+[Install]
+WantedBy=multi-user.target

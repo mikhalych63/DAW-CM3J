@@ -1,0 +1,12 @@
+/dts-v1/;
+/plugin/;
+
+        &{/leds} {
+            pwrled {
+                label = "rk3308:pwr_led";
+                gpios = <&gpio1 23 0x02>; /* GPIO1_C7 on Rock S0 */
+                linux,default-trigger = "activity";
+	        default-state = "on";
+            };
+        };
+

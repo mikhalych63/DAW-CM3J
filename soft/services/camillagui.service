@@ -1,0 +1,11 @@
+[Unit]
+Description=CamillaDSP Backend and GUI
+After=multi-user.target
+
+[Service]
+User=root
+Type=idle
+ExecStart=/opt/camilladsp/camillagui_venv/bin/python /opt/camilladsp/gui/main.py
+Group=root
+[Install]
+WantedBy=multi-user.target

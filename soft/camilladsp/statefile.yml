@@ -1,0 +1,14 @@
+---
+config_path: /opt/camilladsp/configs/FIR_cross.yml
+mute:
+  - false
+  - false
+  - false
+  - false
+  - false
+volume:
+  - -8.7
+  - -40.0
+  - -40.0
+  - -40.0
+  - -40.0

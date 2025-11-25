@@ -1,0 +1,10 @@
+[Unit]
+Description=WiFiConnect
+Requires=NetworkManager.service
+After=NetworkManager.service
+
+[Service]
+ExecStart=/usr/local/sbin/start-wifi
+
+[Install]
+WantedBy=multi-user.target

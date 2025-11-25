@@ -1,0 +1,30 @@
+// Definitions for 8-ch-output
+/dts-v1/;
+/plugin/;
+
+        &i2c3 {
+                status = "disabled";
+        };
+
+        &{/pinctrl} {
+            encoder {
+
+                    encoder1: encoder-1 {
+                            rockchip,pins = <0x00 0x0f 0x02 0x6e 0x00 0x10 0x02 0x6e>;
+                            phandle = <0x222>;
+                    };
+            };
+
+         };
+
+        &{/} {
+        rotary {
+                compatible = "rotary-encoder";
+                pinctrl-names = "default";
+                pinctrl-0 = <&encoder1>;
+                gpios = <&gpio0 0x0f 0x01>,
+                        <&gpio0 0x10 0x01>;
+                linux,axis = <0>;
+                rotary-encoder,relative-axis;
+                };
+        };

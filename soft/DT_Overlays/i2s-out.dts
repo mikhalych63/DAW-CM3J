@@ -1,0 +1,50 @@
+// Definitions for 8-ch-output
+/dts-v1/;
+/plugin/;
+
+	&{/pcie@fe260000} {
+		status = "disabled";
+		};
+
+        &{/i2s@fe410000} {
+                pinctrl-0 = <&i2s1m2_lrcktx &i2s1m2_sclktx &i2s1m2_sdo0 &i2s1m2_sdo1 &i2s1m2_sdo2 &i2s1m2_sdo3 &i2s1m2_sdi0>;
+                status = "okay";
+                };
+
+	&{/hdmi-sound} {
+	    status = "disabled";
+	    };
+
+	&{/rk809-sound} {
+	    status = "disabled";
+	    };
+
+        &{/} {
+                mysound: mysound {
+                        compatible = "simple-audio-card";
+                        simple-audio-card,name = "I2S_MASTER";
+                        simple-audio-card,status = "okay";
+                	simple-audio-card,mclk-fs = <256>;
+                	simple-audio-card,bitclock-master = <&cpu_dai>;
+                    	simple-audio-card,frame-master = <&cpu_dai>;
+                    	simple-audio-card,format = "i2s";
+
+			cpu_dai: simple-audio-card,cpu {
+                    	    sound-dai = <&i2s1_8ch>;
+                        };
+
+                	simple-audio-card,codec {
+                	    sound-dai = <&dummy_tdm_codec>;
+                        };
+		};
+
+                dummy_tdm_codec: dummy-codec {
+                        status = "okay";
+                        #sound-dai-cells = < 0 >;
+                        compatible = "rockchip,dummy-codec";
+                        clocks = <&cru 0x48>;
+                        clock-names = "mclk";
+                        pinctrl-names = "default";
+                        pinctrl-0 = <&i2s1m2_mclk>;
+                        };
+            };
